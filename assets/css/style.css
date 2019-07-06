@@ -1,0 +1,35 @@
+* {
+    box-sizing: border box;
+}
+
+.sec {
+    height: 180px;
+    border: 2px solid black;
+    
+}
+
+.fight-section {
+    height: 80px;
+}
+
+button {
+    border: 1px solid black;
+    color: grey;
+    height: 20px;
+    width: 100px;
+    margin: 10px;
+}
+
+.con {
+    height: 100px;
+    display: inline-block;
+}
+
+img {
+    max-width:100%;
+    max-height:100%;
+}
+
+h1 {
+    font-size: 16px;
+}
