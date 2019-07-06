@@ -65,18 +65,32 @@ console.log(player[0])
 game.reset()
 console.log(player[0])
 
+
+
+
 $( document ).ready(function() {
+
     
-    $('.con').on('click', function (e) {
-        // $('.enemies').append(this).
-        $('.your-character').append(this);
-        // $('.enemies').append(this)
-        
-        
+    $('.choose .con').on('click', function (e) {
+        var $opp = $(e.currentTarget).siblings()
+        $opp.addClass('opp')
+        $opp.removeClass('con')
+        $('.enemies').append($opp)
+        $('.your-character').append($(this))
         $('.choose').hide()
-        // var goat = $(this).siblings()
-        // $('.enemies').append(goat)
+        console.log($opp)
     })
+
+    $('.enemies .opp').on('click', function (e) {
+        $('.defender').append($(this))
+        console.log($(this))
+    })
+
+    
+
+    
 
 
   });
+
+//   https://stackoverflow.com/questions/24053838/store-jquery-selector-in-variable
