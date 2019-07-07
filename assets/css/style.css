@@ -5,6 +5,7 @@
 .sec {
     height: 180px;
     border: 2px solid black;
+    overflow: hidden;
     
 }
 
@@ -23,6 +24,7 @@ button {
 .con {
     height: 100px;
     display: inline-block;
+    overflow: hidden;
 }
 
 .opp {
@@ -31,7 +33,7 @@ button {
 }
 
 img {
-    max-width:100%;
+    /* max-width:100%; */
     max-height:100%;
 }
 
