@@ -14,7 +14,7 @@ $( document ).ready(function() {
             attack: 8,
             baseAttack: 8,
             counter: 15, 
-            img: $('<img>').attr('src', 'assets/images/obi-won.jpg')
+            img: $('<img>').attr('src', 'assets/images/obi-won.jpg').addClass('obi')
         },
         {
             name: 'Luke Skywalker',
@@ -22,7 +22,7 @@ $( document ).ready(function() {
             attack: 10,
             baseAttack: 10,
             counter: 45,
-            img: $('<img>').attr('src', 'assets/images/luke.jpg')
+            img: $('<img>').attr('src', 'assets/images/luke.jpg').addClass('luke')
         },
         {
             name: 'Darth Sidious',
@@ -38,7 +38,7 @@ $( document ).ready(function() {
             attack: 12,
             baseAttack: 12,
             counter: 25,
-            img: $('<img>').attr('src', 'assets/images/maul.jpeg')
+            img: $('<img>').attr('src', 'assets/images/maul.jpeg').addClass('maul')
         }],
     
         attack (player, opp) {
@@ -74,15 +74,16 @@ $( document ).ready(function() {
             var playerIndex = this.players.findIndex(function (item) {
                 return item === game.player
             })
-            if (playerIndex > 1) {
-                this.players.splice(playerIndex, 1)
-                return this.enemies.push(this.players)
-            }
-            console.log(playerIndex)
-            console.log(this.enemies)
+            
+            this.players.splice(playerIndex, 1)
+            this.enemies.push(this.players)
 
+            $('.your-character').append(character.img)
+            $('.choose').hide()
+            
+            
+            console.log(this.enemies)
         }
-    
     }
 
     var obi = game.players[0]
@@ -102,22 +103,16 @@ $( document ).ready(function() {
         var item = $(e.target).attr('class')
         if (item === 'sid') {
             game.choosePlayer(sidious)
+        } else if (item === 'luke') {
+            game.choosePlayer(luke)
+        } else if (item === 'obi') {
+            game.choosePlayer(obi)
+        } else if (item === 'maul') {
+            game.choosePlayer(maul)
         }
-    
-
-    
-        
-        console.log(game.enemies)
-        var $opp = $(e.currentTarget).siblings()
-        $('.your-character').append(this)
-        $('.choose').hide()
-        $('.enemies').append($opp)
     })
 
-    $('.enemies img').on('click', function (e) {
-            $('.defender').append($(this))
-            console.log($(this))
-        })
+    
 
     
 
