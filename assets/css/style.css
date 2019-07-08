@@ -5,7 +5,7 @@
 .sec {
     height: 180px;
     border: 2px solid black;
-    overflow: hidden;
+    /* overflow: hidden; */
     
 }
 
@@ -21,11 +21,11 @@ button {
     margin: 10px;
 }
 
-.con {
+/* .con {
     height: 100px;
     display: inline-block;
     overflow: hidden;
-}
+} */
 
 .opp {
     height: 100px;
@@ -34,9 +34,63 @@ button {
 
 img {
     /* max-width:100%; */
-    max-height:100%;
+    max-height: 80%;
+    border: 2px solid black;
 }
 
 h1 {
     font-size: 16px;
+}
+
+.container {
+    background-color: red;
+    width: 300px;
+    height: 160px;
+    display: inline-block;
+    border: 2px solid black;
+}
+
+.final {
+    background-color: red;
+    width: 300px;
+    height: 160px;
+    display: inline-block;
+    border: 2px solid black;
+}
+
+.luke {
+    background-color: red;
+    width: 300px;
+    height: 160px;
+    display: inline-block;
+    border: 2px solid black;
+}
+
+.obi {
+    display: inline-block;
+    background-color: red;
+    width: 300px;
+    height: 160px;
+    display: inline-block;
+    border: 2px solid black;
+}
+
+.sid {
+    background-color: red;
+    width: 300px;
+    height: 160px;
+    display: inline-block;
+    border: 2px solid black;
+}
+
+.maul {
+    background-color: red;
+    width: 300px;
+    height: 160px;
+    display: inline-block;
+    border: 2px solid black;
+}
+
+p {
+    color: yellow;
 }
