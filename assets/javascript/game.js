@@ -68,21 +68,105 @@ $( document ).ready(function() {
     
         },
 
-        choosePlayer(character) {
-            this.player = character  
-            console.log(this.player)
+        choosePlayer() {
+
+            $('.choose img').on('click', function (e) {
+        
+                var item = $(e.target).attr('class')
+                if (item === 'sid') {
+                    if (!game.player) {
+                        game.player = game.players.find(o => o.name === 'Darth Sidious')
+                    }
+                    console.log(`player: ${game.player.name}`)
+                    $('.your-character').append(sidious.img)
+                    $('.choose').hide()
+                    game.displayEnemies()
+                } else if (item === 'luke') {
+                    if (!game.player) {
+                        game.player = game.players.find(o => o.name === 'Luke Skywalker')
+                    }
+                    console.log(`player: ${game.player.name}`)
+                    $('.your-character').append(luke.img)
+                    $('.choose').hide()
+                    game.displayEnemies()
+                } else if (item === 'obi') {
+                    if (!game.player) {
+                        game.player = game.players.find(o => o.name === 'Obi-Wan')
+                    }
+                    console.log(`player: ${game.player.name}`)
+                    $('.your-character').append(obi.img)
+                    $('.choose').hide()
+                    game.displayEnemies()
+                } else if (item === 'maul') {
+                    if (!game.player) {
+                        game.player = game.players.find(o => o.name === 'Darth Maul')
+                    }
+                    console.log(`player: ${game.player.name}`)
+                    $('.your-character').append(maul.img)
+                    $('.choose').hide()
+                    game.displayEnemies()
+                }  
+            })  
+        },
+
+        displayEnemies() {
+
             var playerIndex = this.players.findIndex(function (item) {
                 return item === game.player
             })
             
             this.players.splice(playerIndex, 1)
-            this.enemies.push(this.players)
+            this.enemies.push(...this.players)
+            // this.enemies.push.apply(this.enemies, this.players)
+            // for (var i = 0; i = game.players.length; i++) {
+            //     this.enemies.push(this.players[i])
+            // }
+            // game.displayEnemies()
+            
+            let a = game.enemies.find(item => item.name === 'Obi-Wan')
+            let b = game.enemies.find(item => item.name === 'Luke Skywalker')
+            let c = game.enemies.find(item => item.name === 'Darth Sidious')
+            let d = game.enemies.find(item => item.name === 'Darth Maul')
+            
+            if (a) {
+                $('.enemies').append(obi.img)
+            }
+            if (b) {
+                $('.enemies').append(luke.img)
+            }
+            if (c) {
+                $('.enemies').append(sidious.img)
+            }
+            if (d) {
+                $('.enemies').append(maul.img)
+            }
 
-            $('.your-character').append(character.img)
-            $('.choose').hide()
-            
-            
-            console.log(this.enemies)
+            this.chooseDefender()
+        },
+
+        chooseDefender () {
+            $('.enemies img').on('click', function (e) {
+                
+                var item = $(e.target).attr('class')
+                if (item === 'sid') {
+                    game.opp = game.enemies.find(o => o.name === 'Darth Sidious')
+                    $('.defender').append(sidious.img)
+                    console.log(`Player: ${game.player.name} Opp: ${game.opp.name}`)
+                } else if (item === 'luke') {
+                    $('.defender').append(luke.img)
+                    game.opp = game.enemies.find(o => o.name === 'Luke Skywalker')
+                    console.log(`Player: ${game.player.name} Opp: ${game.opp.name}`)
+                } else if (item === 'obi') {
+                    $('.defender').append(obi.img)
+                    game.opp = game.enemies.find(o => o.name === 'Obi-Wan')
+                    console.log(`Player: ${game.player.name} Opp: ${game.opp.name}`)
+                } else if (item === 'maul') {
+                    $('.defender').append(maul.img)
+                    game.opp = game.enemies.find(o => o.name === 'Darth Maul')
+                    console.log(`Player: ${game.player.name} Opp: ${game.opp.name}`)
+                }
+
+            })
         }
     }
 
@@ -91,40 +175,16 @@ $( document ).ready(function() {
     var sidious = game.players[2]
     var maul = game.players[3]
 
-    // console.log(game.choosePlayer(sidious))
     
     
-
-    // var obiPic = $('<img>').attr('src', 'assets/javascript/obi-won.jpg')
+    
     $('.choose').append(obi.img, luke.img, sidious.img, maul.img)
-    
-    $('.choose img').on('click', function (e) {
-        console.log(e.target)
-        var item = $(e.target).attr('class')
-        if (item === 'sid') {
-            game.choosePlayer(sidious)
-        } else if (item === 'luke') {
-            game.choosePlayer(luke)
-        } else if (item === 'obi') {
-            game.choosePlayer(obi)
-        } else if (item === 'maul') {
-            game.choosePlayer(maul)
-        }
-    })
 
     
+    game.choosePlayer()
 
-    
-
-  });
+  }); //
 
 //   https://stackoverflow.com/questions/24053838/store-jquery-selector-in-variable
 // http://jqfundamentals.com/chapter/traversing-manipulating
 
-// var player = game.players
-    // game.attack(player[0], player[1])
-    // // game.attack(player[0], player[1])
-    // // game.attack(player[0], player[1])
-    // console.log(player[0])
-    // game.reset()
-    // console.log(player[0])
