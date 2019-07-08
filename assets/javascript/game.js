@@ -1,6 +1,8 @@
 
 
-// $( document ).ready(function() {
+$( document ).ready(function() {
+
+    var bear = $('<div>').append
 
 
     const game = {
@@ -8,13 +10,15 @@
         enemies: [],
         opp: null,
 
+
         players: [{
             name: 'Obi-Wan',
             hp: 120,
             attack: 8,
             baseAttack: 8,
             counter: 15, 
-            img: $('<div>').append('<h1>Obi<h1>').append($('<img>').attr('src', 'assets/images/obi-won.jpg')).addClass('obi')
+            img: $('<div>').append().append($('<img>').addClass('obi2').attr('src', 'assets/images/obi-won.jpg')).addClass('obi')
+            
         },
         {
             name: 'Luke Skywalker',
@@ -82,7 +86,7 @@
 
         choosePlayer() {
 
-            $('.choose ').on('click', function (e) {
+            $('.choose').on('click', function (e) {
                 console.log(e)
                 var item = $(e.target).attr('class')
                 console.log(item)
@@ -97,7 +101,7 @@
                     game.player = game.findChar(luke.name, game.players)
                     $('.your-character').append(luke.img)
 
-                } else if (item === 'obi') {
+                } else if (item === 'obi' || item === 'obi2') {
 
                     game.player = game.findChar(obi.name, game.players)
                     $('.your-character').append(obi.img)
@@ -206,7 +210,7 @@
     
     game.choosePlayer()
 
-//   }); //
+  }); //
 
 //   https://stackoverflow.com/questions/24053838/store-jquery-selector-in-variable
 // http://jqfundamentals.com/chapter/traversing-manipulating
