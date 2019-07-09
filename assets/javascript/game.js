@@ -16,11 +16,22 @@ $( document ).ready(function() {
 
         players: [{
             name: 'Obi-Wan',
-            hp: 120,
+            hp: '120',
             attack: 8,
             baseAttack: 8,
             counter: 15, 
-            img: $('<div>').append(`<p>${four}<p>`).append($('<img>').addClass('obi2').attr('src', 'assets/images/obi-won.jpg')).addClass('obi')
+            img: function () {
+
+                var health = this.hp
+                console.log(health)
+                var div = $('<div>').addClass('obi')
+                var pic = $('<img>').addClass('obi2').attr('src', 'assets/images/obi-won.jpg')
+                return div.text(health).append(pic)
+                
+                // return $('<div>').text(health).append($('<img>').addClass('obi2').attr('src', 'assets/images/obi-won.jpg')).addClass('obi')
+
+            }
+            
             
         },
         {
