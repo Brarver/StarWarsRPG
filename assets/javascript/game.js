@@ -3,12 +3,15 @@
 $( document ).ready(function() {
 
     var bear = $('<div>').append
+    var four = 'cheese'
+    
 
 
     const game = {
         player: null,
         enemies: [],
         opp: null,
+        four: 'bear',
 
 
         players: [{
@@ -17,7 +20,7 @@ $( document ).ready(function() {
             attack: 8,
             baseAttack: 8,
             counter: 15, 
-            img: $('<div>').append().append($('<img>').addClass('obi2').attr('src', 'assets/images/obi-won.jpg')).addClass('obi')
+            img: $('<div>').append(`<p>${four}<p>`).append($('<img>').addClass('obi2').attr('src', 'assets/images/obi-won.jpg')).addClass('obi')
             
         },
         {
@@ -47,6 +50,8 @@ $( document ).ready(function() {
             // img: $('<img>').attr('src', 'assets/images/maul.jpeg').addClass('maul'),
             img: $('<div>').append($('<img>').attr('src', 'assets/images/maul.jpeg')).addClass('maul')
         }],
+
+        // obiBox: 
 
         // obiBox: this.createBox(game.players[0].img),
         // lukeBox: this.createBox(luke.img),
@@ -202,7 +207,8 @@ $( document ).ready(function() {
     var sidious = game.players[2]
     var maul = game.players[3]
 
-    
+    var five = game.players[0].hp
+    console.log(five)
     
     
     $('.choose').append(obi.img, luke.img, sidious.img, maul.img)
@@ -214,4 +220,11 @@ $( document ).ready(function() {
 
 //   https://stackoverflow.com/questions/24053838/store-jquery-selector-in-variable
 // http://jqfundamentals.com/chapter/traversing-manipulating
+// https://stackoverflow.com/questions/4616202/self-references-in-object-literals-initializers
+// https://stackoverflow.com/questions/6824129/how-do-i-reference-the-same-objects-properties-during-its-creation
+
+
+//create game.variables to hold jquery image divs
+
+//create a function to create player display 
 
