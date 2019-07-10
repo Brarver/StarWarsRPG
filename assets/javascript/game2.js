@@ -1,4 +1,4 @@
-// $( document ).ready(function() {
+$( document ).ready(function() {
 
     ////////Variables//////////////////////////////////////////////////////////////////////////////////
 
@@ -219,7 +219,7 @@
         console.log(`${player.name} vs ${opp.name}`)
     })
 
-//   }); //
+  }); //
 
 //   https://stackoverflow.com/questions/24053838/store-jquery-selector-in-variable
 // http://jqfundamentals.com/chapter/traversing-manipulating
