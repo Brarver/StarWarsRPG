@@ -227,7 +227,7 @@
 // https://stackoverflow.com/questions/6824129/how-do-i-reference-the-same-objects-properties-during-its-creation
 
 
-// Is there any way to store player box in object?
+
 // how to change hp display on attack click
 // Advantages to using function declarations over expressions? Better organization?
 // Advantages to using game as object? 
