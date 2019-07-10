@@ -65,6 +65,12 @@ $( document ).ready(function() {
             return div.text(char.hp).append(char.img)
         }
 
+        var displayDamage = function () {
+            var p = $('<p>')
+            p.html('You attacked ' + opp.name + ' for ' + player.attack + ' damage. <br>' + opp.name + ' attacked you back for ' + opp.attack + ' damage.' )
+            return p
+        }
+
         var attack = function (player, opp) {
             player.attack += player.baseAttack
             player.hp -= opp.counter
@@ -72,26 +78,51 @@ $( document ).ready(function() {
     
             if (player.hp < 1) {
                 console.log('You have lost')
+                $('.attack').off()
+                reset()
+                return
             } 
     
             if (opp.hp < 1) {
                 console.log('You have won')
+                $('.attack').off()
+                reset()
+                return
             }
 
+            $('.damage').empty()
+
             $(".your-character *:not('.name')").remove()
+            $(".defender *:not('.name')").remove()
             
-            $('.your-character').append(createBox(obi))
+            $('.your-character').append(createBox(player))
+            $('.defender').append(createBox(opp))
+
+            $('.damage').append(displayDamage())
         }
     
-        var reset = function() {
-            player[0].hp = 120
-            player[0].attack = 8
-            player[1].hp = 100
-            player[1].attack = 10
-            player[2].hp = 150
-            player[2].attack = 20
-            player[3].hp = 180
-            player[3].attack = 12
+        function reset() {
+
+            var restartButton = $('<button>Restart</button>')
+            restartButton.addClass('chow')
+            $('.damage').append(restartButton)
+
+                player = null
+                opp = null
+                enemies = []
+                players[0].hp = 120
+                players[0].attack = 8
+                players[1].hp = 100
+                players[1].attack = 10
+                players[2].hp = 150
+                players[2].attack = 20
+                // players[3].hp = 180
+                // players[3].attack = 12
+                choosePlayer()
+
+            $('.damage .chow').on('click', function () {
+                
+            })
     
         }
 
@@ -99,7 +130,7 @@ $( document ).ready(function() {
             return arr.find(o => o.name === char)
         }
 
-        var choosePlayer = function () {
+        function choosePlayer() {
 
             $('.choose').append(obiBox, lukeBox, sidBox, maulBox)
 
@@ -216,7 +247,7 @@ $( document ).ready(function() {
 
     $('.attack').on('click', function () {
         attack(player, opp)
-        console.log(`${player.name} vs ${opp.name}`)
+        // console.log(`${player.name} vs ${opp.name}`)
     })
 
   }); //
