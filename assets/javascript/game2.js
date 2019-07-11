@@ -14,7 +14,8 @@ $( document ).ready(function() {
             baseAttack: 8,
             counter: 15, 
             img: $('<img>').addClass('obi').attr('src', 'assets/images/obi-won.jpg'),
-            // box: obiBox
+            // img: $('<img>').attr('src', 'assets/images/obi-won.jpg'),
+            
            
         },
         {
@@ -25,6 +26,7 @@ $( document ).ready(function() {
             baseAttack: 10,
             counter: 45,
             img: $('<img>').addClass('luke').attr('src', 'assets/images/luke.jpg')
+            // img: $('<img>').attr('src', 'assets/images/luke.jpg')
 
         },
         {
@@ -35,6 +37,7 @@ $( document ).ready(function() {
             baseAttack: 20,
             counter: 20,
             img: $('<img>').addClass('sid').attr('src', 'assets/images/sidious.jpeg')
+            // img: $('<img>').attr('src', 'assets/images/sidious.jpeg')
             
         },
         {
@@ -45,6 +48,7 @@ $( document ).ready(function() {
             baseAttack: 12,
             counter: 25,
             img: $('<img>').addClass('maul').attr('src', 'assets/images/maul.jpeg')
+            // img: $('<img>').attr('src', 'assets/images/maul.jpeg')
         }]
 
         var obi = players[0]
@@ -62,6 +66,7 @@ $( document ).ready(function() {
         function createBox (char) {
 
             var div = $('<div>').addClass(char.class)
+            // var div = $('<div>')
             return div.text(char.hp).append(char.img)
         }
 
@@ -102,10 +107,12 @@ $( document ).ready(function() {
         }
     
         function reset() {
-
+            console.log(players)
             var restartButton = $('<button>Restart</button>')
             restartButton.addClass('chow')
             $('.damage').append(restartButton)
+
+            
 
                 player = null
                 opp = null
@@ -116,12 +123,63 @@ $( document ).ready(function() {
                 players[1].attack = 10
                 players[2].hp = 150
                 players[2].attack = 20
-                // players[3].hp = 180
-                // players[3].attack = 12
-                choosePlayer()
+                players[3].hp = 180
+                players[3].attack = 12
+
+                console.log(players)
+
+                // players = [{
+                //     name: 'Obi-Wan',
+                //     class: 'obi',
+                //     hp: 120,
+                //     attack: 8,
+                //     baseAttack: 8,
+                //     counter: 15, 
+                //     img: $('<img>').addClass('obi').attr('src', 'assets/images/obi-won.jpg'),
+                //     // img: $('<img>').attr('src', 'assets/images/obi-won.jpg'),
+                    
+                   
+                // },
+                // {
+                //     name: 'Luke Skywalker',
+                //     class: 'luke',
+                //     hp: 100,
+                //     attack: 10,
+                //     baseAttack: 10,
+                //     counter: 45,
+                //     img: $('<img>').addClass('luke').attr('src', 'assets/images/luke.jpg')
+                //     // img: $('<img>').attr('src', 'assets/images/luke.jpg')
+        
+                // },
+                // {
+                //     name: 'Darth Sidious',
+                //     class: 'sid',
+                //     hp: 150,
+                //     attack: 20,
+                //     baseAttack: 20,
+                //     counter: 20,
+                //     img: $('<img>').addClass('sid').attr('src', 'assets/images/sidious.jpeg')
+                //     // img: $('<img>').attr('src', 'assets/images/sidious.jpeg')
+                    
+                // },
+                // {
+                //     name: 'Darth Maul',
+                //     class: 'maul',
+                //     hp: 180,
+                //     attack: 12,
+                //     baseAttack: 12,
+                //     counter: 25,
+                //     img: $('<img>').addClass('maul').attr('src', 'assets/images/maul.jpeg')
+                //     // img: $('<img>').attr('src', 'assets/images/maul.jpeg')
+                // }]
+                
 
             $('.damage .chow').on('click', function () {
-                
+                $(".your-character *:not('.name')").remove()
+                $(".defender *:not('.name')").remove()
+                restartButton.hide()
+                console.log(players)
+                newPlayer()
             })
     
         }
@@ -130,7 +188,20 @@ $( document ).ready(function() {
             return arr.find(o => o.name === char)
         }
 
+        function newPlayer() {
+
+            console.log(players)
+            $('.choose').show()
+            // $('.your-character').empty()
+            // $('.defender').empty()
+            $('.enemies').empty()
+
+            $('.choose').append(createBox(obi), createBox(luke), createBox(sidious), createBox(maul))
+        }
+
         function choosePlayer() {
+
+            $('.choose').show()
 
             $('.choose').append(obiBox, lukeBox, sidBox, maulBox)
 
@@ -159,6 +230,9 @@ $( document ).ready(function() {
                     $('.your-character').append(maulBox)
                 }  
 
+
+                
+                $('.choose').empty()
                 $('.choose').hide()
                 displayEnemies(player)                            
             })      
@@ -173,8 +247,11 @@ $( document ).ready(function() {
                 return item === player
             })
             
-            players.splice(playerIndex, 1)
+            // players.splice(playerIndex, 1)
+            // enemies.push(...players)
+
             enemies.push(...players)
+            enemies.splice(playerIndex, 1)
             // this.enemies.push.apply(this.enemies, this.players)
             // for (var i = 0; i = game.players.length; i++) {
             //     this.enemies.push(this.players[i])
@@ -244,6 +321,7 @@ $( document ).ready(function() {
     ////////////Calls/Event Listeners///////////////////////////////////////////////////////////////////
     
     choosePlayer()
+    // newPlayer()
 
     $('.attack').on('click', function () {
         attack(player, opp)
