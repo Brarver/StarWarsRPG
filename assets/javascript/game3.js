@@ -1,4 +1,4 @@
-// $( document ).ready(function() {
+$( document ).ready(function() {
 
     ////////Variables//////////////////////////////////////////////////////////////////////////////////
 
@@ -14,6 +14,9 @@
             baseAttack: 8,
             counter: 15, 
             img: $('<img>').addClass('obi').attr('src', 'assets/images/obi-won.jpg'),
+            // img: $('<img>').attr('src', 'assets/images/obi-won.jpg'),
+            
+           
         },
         {
             name: 'Luke Skywalker',
@@ -23,6 +26,8 @@
             baseAttack: 10,
             counter: 45,
             img: $('<img>').addClass('luke').attr('src', 'assets/images/luke.jpg')
+            // img: $('<img>').attr('src', 'assets/images/luke.jpg')
+
         },
         {
             name: 'Darth Sidious',
@@ -32,6 +37,8 @@
             baseAttack: 20,
             counter: 20,
             img: $('<img>').addClass('sid').attr('src', 'assets/images/sidious.jpeg')
+            // img: $('<img>').attr('src', 'assets/images/sidious.jpeg')
+            
         },
         {
             name: 'Darth Maul',
@@ -41,6 +48,7 @@
             baseAttack: 12,
             counter: 25,
             img: $('<img>').addClass('maul').attr('src', 'assets/images/maul.jpeg')
+            // img: $('<img>').attr('src', 'assets/images/maul.jpeg')
         }]
 
         var obi = players[0]
@@ -48,16 +56,17 @@
         var sidious = players[2]
         var maul = players[3]
 
-        var obiBox
-        var lukeBox
-        var sidBox
-        var maulBox
+        var obiBox = createBox(obi)
+        var lukeBox = createBox(luke)
+        var sidBox = createBox(sidious)
+        var maulBox = createBox(maul)
 
     /////////////Functions//////////////////////////////////////////////////////////////////////////////
 
         function createBox (char) {
 
             var div = $('<div>').addClass(char.class)
+            // var div = $('<div>')
             return div.text(char.hp).append(char.img)
         }
 
@@ -98,10 +107,12 @@
         }
     
         function reset() {
-            
+            console.log(players)
             var restartButton = $('<button>Restart</button>')
-            restartButton.addClass('reset')
+            restartButton.addClass('chow')
             $('.damage').append(restartButton)
+
+            
 
                 player = null
                 opp = null
@@ -114,27 +125,81 @@
                 players[2].attack = 20
                 players[3].hp = 180
                 players[3].attack = 12
+
+                console.log(players)
+
+                // players = [{
+                //     name: 'Obi-Wan',
+                //     class: 'obi',
+                //     hp: 120,
+                //     attack: 8,
+                //     baseAttack: 8,
+                //     counter: 15, 
+                //     img: $('<img>').addClass('obi').attr('src', 'assets/images/obi-won.jpg'),
+                //     // img: $('<img>').attr('src', 'assets/images/obi-won.jpg'),
+                    
+                   
+                // },
+                // {
+                //     name: 'Luke Skywalker',
+                //     class: 'luke',
+                //     hp: 100,
+                //     attack: 10,
+                //     baseAttack: 10,
+                //     counter: 45,
+                //     img: $('<img>').addClass('luke').attr('src', 'assets/images/luke.jpg')
+                //     // img: $('<img>').attr('src', 'assets/images/luke.jpg')
+        
+                // },
+                // {
+                //     name: 'Darth Sidious',
+                //     class: 'sid',
+                //     hp: 150,
+                //     attack: 20,
+                //     baseAttack: 20,
+                //     counter: 20,
+                //     img: $('<img>').addClass('sid').attr('src', 'assets/images/sidious.jpeg')
+                //     // img: $('<img>').attr('src', 'assets/images/sidious.jpeg')
+                    
+                // },
+                // {
+                //     name: 'Darth Maul',
+                //     class: 'maul',
+                //     hp: 180,
+                //     attack: 12,
+                //     baseAttack: 12,
+                //     counter: 25,
+                //     img: $('<img>').addClass('maul').attr('src', 'assets/images/maul.jpeg')
+                //     // img: $('<img>').attr('src', 'assets/images/maul.jpeg')
+                // }]
                 
-            $('.damage .reset').on('click', function () {
+
+            $('.damage .chow').on('click', function () {
                 $(".your-character *:not('.name')").remove()
                 $(".defender *:not('.name')").remove()
                 restartButton.hide()
-                choosePlayer()
+                console.log(players)
+                newPlayer()
             })
+    
         }
 
         var findChar = function (char, arr) {
             return arr.find(o => o.name === char)
         }
 
+        function newPlayer() {
+
+            console.log(players)
+            $('.choose').show()
+            // $('.your-character').empty()
+            // $('.defender').empty()
+            $('.enemies').empty()
+
+            $('.choose').append(createBox(obi), createBox(luke), createBox(sidious), createBox(maul))
+        }
+
         function choosePlayer() {
-
-            obiBox = createBox(obi)
-            lukeBox = createBox(luke)
-            sidBox = createBox(sidious)
-            maulBox = createBox(maul)
-
-            $(".enemies *:not('.name')").remove()
 
             $('.choose').show()
 
@@ -165,6 +230,8 @@
                     $('.your-character').append(maulBox)
                 }  
 
+
+                
                 $('.choose').empty()
                 $('.choose').hide()
                 displayEnemies(player)                            
@@ -179,9 +246,17 @@
             var playerIndex = players.findIndex(function (item) {
                 return item === player
             })
+            
+            // players.splice(playerIndex, 1)
+            // enemies.push(...players)
 
             enemies.push(...players)
             enemies.splice(playerIndex, 1)
+            // this.enemies.push.apply(this.enemies, this.players)
+            // for (var i = 0; i = game.players.length; i++) {
+            //     this.enemies.push(this.players[i])
+            // }
+            // game.displayEnemies()
             
             let a = enemies.find(item => item.name === 'Obi-Wan')
             let b = enemies.find(item => item.name === 'Luke Skywalker')
@@ -215,37 +290,54 @@
                     opp = findChar(sidious.name, enemies)
                     $('.defender').append(sidBox)
                     $('.enemies').off()
+                    console.log(`Player: ${player.name} Opp: ${opp.name}`)
 
                 } else if (item === 'luke') {
 
                     $('.defender').append(lukeBox)
                     opp = findChar(luke.name, enemies)
                     $('.enemies').off()
+                    console.log(`Player: ${player.name} Opp: ${opp.name}`)
 
                 } else if (item === 'obi') {
 
                     $('.defender').append(obiBox)
                     opp = findChar(obi.name, enemies)
                     $('.enemies').off()
+                    console.log(`Player: ${player.name} Opp: ${opp.name}`)
 
                 } else if (item === 'maul') {
 
                     $('.defender').append(maulBox)
                     opp = findChar(maul.name, enemies)
                     $('.enemies').off()
+                    console.log(`Player: ${player.name} Opp: ${opp.name}`)
                 }
-
-                $('.attack').on('click', function () {
-                    attack(player, opp)
-                })          
-            })      
+                
+            })
+             
         }
 
     ////////////Calls/Event Listeners///////////////////////////////////////////////////////////////////
     
     choosePlayer()
+    // newPlayer()
 
-//   }); 
+    $('.attack').on('click', function () {
+        attack(player, opp)
+        // console.log(`${player.name} vs ${opp.name}`)
+    })
+
+  }); //
+
+//   https://stackoverflow.com/questions/24053838/store-jquery-selector-in-variable
+// http://jqfundamentals.com/chapter/traversing-manipulating
+// https://stackoverflow.com/questions/4616202/self-references-in-object-literals-initializers
+// https://stackoverflow.com/questions/6824129/how-do-i-reference-the-same-objects-properties-during-its-creation
 
 
 
+// how to change hp display on attack click
+// Advantages to using function declarations over expressions? Better organization?
+// Advantages to using game as object? 
+// how to console log in jquery?
