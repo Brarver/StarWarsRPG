@@ -2,31 +2,33 @@
 
     ////////Variables//////////////////////////////////////////////////////////////////////////////////
 
-        var player = null
-        var enemies = []
-        var opp = null
-
         var players = [{
             name: 'Obi-Wan',
             class: 'obi',
+            count: null,
+            wins: null,
             hp: 120,
-            attack: 8,
-            baseAttack: 8,
+            attack: 20,
+            baseAttack: 20,
             counter: 15, 
             img: $('<img>').addClass('obi').attr('src', 'assets/images/obi-won.jpg'),
         },
         {
             name: 'Luke Skywalker',
             class: 'luke',
-            hp: 100,
-            attack: 10,
-            baseAttack: 10,
-            counter: 45,
+            count: null,
+            wins: null,
+            hp: 140,
+            attack: 20,
+            baseAttack: 20,
+            counter: 5,
             img: $('<img>').addClass('luke').attr('src', 'assets/images/luke.jpg')
         },
         {
             name: 'Darth Sidious',
             class: 'sid',
+            count: null,
+            wins: null,
             hp: 150,
             attack: 20,
             baseAttack: 20,
@@ -36,12 +38,18 @@
         {
             name: 'Darth Maul',
             class: 'maul',
+            count: null,
+            wins: null,
             hp: 180,
             attack: 12,
             baseAttack: 12,
             counter: 25,
             img: $('<img>').addClass('maul').attr('src', 'assets/images/maul.jpeg')
         }]
+
+        var player = null
+        var enemies = []
+        var opp = null
 
         var obi = players[0]
         var luke = players[1]
@@ -58,39 +66,70 @@
         function createBox (char) {
 
             var div = $('<div>').addClass(char.class)
-            return div.text(char.hp).append(char.img)
+            return div.append(char.name).append(char.img).append(char.hp)
         }
 
         var displayDamage = function () {
             var p = $('<p>')
-            p.html('You attacked ' + opp.name + ' for ' + player.attack + ' damage. <br>' + opp.name + ' attacked you back for ' + opp.attack + ' damage.' )
+            p.html('You attacked ' + opp.name + ' for ' + player.attack + ' damage. <br>' + opp.name + ' attacked you back for ' + opp.counter + ' damage.' )
             return p
         }
 
         var attack = function (player, opp) {
-            player.attack += player.baseAttack
-            player.hp -= opp.counter
+            
+            if (player.count) {
+                player.attack += player.baseAttack
+            }
+            player.count++
+            player.hp = player.hp - opp.counter
             opp.hp -= player.attack
     
             if (player.hp < 1) {
-                console.log('You have lost')
+                $('.damage').text('You have lost')
+                $('.damage').append(displayDamage())
                 $('.attack').off()
+                $(".your-character *:not('.name')").remove()
+                $(".defender *:not('.name')").remove()
+            
+                $('.your-character').append(createBox(player))
+                $('.defender').append(createBox(opp))
                 reset()
                 return
             } 
     
             if (opp.hp < 1) {
-                console.log('You have won')
+                player.wins++
+                console.log(player.count)
+                console.log(player.wins)
+                if (player.wins === 3) {
+                    console.log(player.count)
+                    console.log(player.wins)
+                    $('.damage').text('You have Won! Game over!')
+                    $(".defender *:not('.name')").remove()
+                    $('.attack').off()
+                    $(".your-character *:not('.name')").remove()
+                    $('.your-character').append(createBox(player))
+                
+                    reset()
+                    return
+                }
                 $('.attack').off()
-                reset()
+                $(".defender *:not('.name')").remove()
+                $(".your-character *:not('.name')").remove()
+                $('.your-character').append(createBox(player))
+                $('.damage').text('you have won! Choose your next enemy')
+                $('.damage').append(displayDamage())
+                $('.attack').on('click', function () {
+                    $('.damage').empty()
+                    $('.damage').text('Please choose another enemy')
+                })
+                chooseDefender()
                 return
             }
 
             $('.damage').empty()
-
             $(".your-character *:not('.name')").remove()
             $(".defender *:not('.name')").remove()
-            
             $('.your-character').append(createBox(player))
             $('.defender').append(createBox(opp))
 
@@ -108,16 +147,25 @@
                 enemies = []
                 players[0].hp = 120
                 players[0].attack = 8
+                players[0].wins = null
+                players[0].count = null
                 players[1].hp = 100
                 players[1].attack = 10
+                players[1].wins = null
+                players[1].count = null
                 players[2].hp = 150
                 players[2].attack = 20
+                players[2].wins = null
+                players[2].count = null
                 players[3].hp = 180
                 players[3].attack = 12
+                players[3].wins = null
+                players[3].count = null
                 
             $('.damage .reset').on('click', function () {
                 $(".your-character *:not('.name')").remove()
                 $(".defender *:not('.name')").remove()
+                $('.damage').empty()
                 restartButton.hide()
                 choosePlayer()
             })
@@ -207,6 +255,8 @@
         var chooseDefender = function () {
 
             $('.enemies').on('click', function (e) {
+
+                $('.damage').empty()
                 
                 var item = $(e.target).attr('class')
 

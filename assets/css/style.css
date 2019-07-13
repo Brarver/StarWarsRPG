@@ -3,10 +3,8 @@
 }
 
 .sec {
-    height: 180px;
+    height: 220px;
     border: 2px solid black;
-    /* overflow: hidden; */
-    
 }
 
 .fight-section {
@@ -15,84 +13,62 @@
 
 button {
     border: 1px solid black;
-    color: grey;
+    color: black;
     height: 20px;
     width: 100px;
     margin: 10px;
-}
-
-/* .con {
-    height: 100px;
-    display: inline-block;
-    overflow: hidden;
-} */
-
-.opp {
-    height: 100px;
-    display: inline-block;
-}
-
-img {
-    /* max-width:100%; */
-    max-height: 80%;
-    border: 2px solid black;
 }
 
 h1 {
     font-size: 16px;
 }
 
-.container {
-    background-color: red;
-    width: 300px;
-    height: 160px;
-    display: inline-block;
-    border: 2px solid black;
-}
-
-.final {
-    background-color: red;
-    width: 300px;
-    height: 160px;
-    display: inline-block;
-    border: 2px solid black;
-}
-
-.luke {
-    background-color: red;
-    width: 300px;
-    height: 160px;
-    display: inline-block;
-    border: 2px solid black;
-}
-
-.obi {
-    display: inline-block;
-    background-color: red;
-    width: 300px;
-    height: 160px;
-    display: inline-block;
-    border: 2px solid black;
-}
-
-.sid {
-    background-color: red;
-    width: 300px;
-    height: 160px;
-    display: inline-block;
-    border: 2px solid black;
-}
-
-.maul {
-    background-color: red;
-    width: 300px;
-    height: 160px;
-    display: inline-block;
-    border: 2px solid black;
-}
-
-
-
 .damage p {
     margin-top: 30px;
 }
+
+.luke,
+.obi,
+.sid,
+.maul {
+    background-color: white;
+    width: 300px;
+    height: 160px;
+    display: inline-block;
+    border: 2px solid black;
+    
+}
+
+img {
+    max-width: 80%;
+    max-height: 80%;
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+}
+
+/* img.obi,
+img.luke,
+img.sid,
+img.maul {
+    margin-top: 10px;
+} */
+
+.enemies .obi,
+.enemies .sid,
+.enemies .luke,
+.enemies .maul {
+    background-color: red;
+}
+
+.defender .obi,
+.defender .sid,
+.defender .luke,
+.defender .maul {
+    background-color: black;
+    color: white;
+}
+
+
+
+    
