@@ -8,8 +8,8 @@
             count: null,
             wins: null,
             hp: 120,
-            attack: 8,
-            baseAttack: 8,
+            attack: 20,
+            baseAttack: 20,
             counter: 15, 
             img: $('<img>').addClass('obi').attr('src', 'assets/images/obi-won.jpg'),
         },
@@ -18,9 +18,9 @@
             class: 'luke',
             count: null,
             wins: null,
-            hp: 100,
-            attack: 10,
-            baseAttack: 10,
+            hp: 140,
+            attack: 20,
+            baseAttack: 20,
             counter: 5,
             img: $('<img>').addClass('luke').attr('src', 'assets/images/luke.jpg')
         },
@@ -67,7 +67,6 @@
 
             var div = $('<div>').addClass(char.class)
             return div.append(char.name).append(char.img).append(char.hp)
-            
         }
 
         var displayDamage = function () {
@@ -86,36 +85,51 @@
             opp.hp -= player.attack
     
             if (player.hp < 1) {
-                
                 $('.damage').text('You have lost')
                 $('.damage').append(displayDamage())
                 $('.attack').off()
+                $(".your-character *:not('.name')").remove()
+                $(".defender *:not('.name')").remove()
+            
+                $('.your-character').append(createBox(player))
+                $('.defender').append(createBox(opp))
                 reset()
                 return
             } 
     
             if (opp.hp < 1) {
                 player.wins++
+                console.log(player.count)
+                console.log(player.wins)
                 if (player.wins === 3) {
+                    console.log(player.count)
+                    console.log(player.wins)
                     $('.damage').text('You have Won! Game over!')
                     $(".defender *:not('.name')").remove()
                     $('.attack').off()
+                    $(".your-character *:not('.name')").remove()
+                    $('.your-character').append(createBox(player))
+                
                     reset()
                     return
                 }
+                $('.attack').off()
                 $(".defender *:not('.name')").remove()
+                $(".your-character *:not('.name')").remove()
+                $('.your-character').append(createBox(player))
                 $('.damage').text('you have won! Choose your next enemy')
                 $('.damage').append(displayDamage())
-                $('.attack').off()
+                $('.attack').on('click', function () {
+                    $('.damage').empty()
+                    $('.damage').text('Please choose another enemy')
+                })
                 chooseDefender()
                 return
             }
 
             $('.damage').empty()
-
             $(".your-character *:not('.name')").remove()
             $(".defender *:not('.name')").remove()
-            
             $('.your-character').append(createBox(player))
             $('.defender').append(createBox(opp))
 

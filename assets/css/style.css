@@ -23,6 +23,10 @@ h1 {
     font-size: 16px;
 }
 
+.damage p {
+    margin-top: 30px;
+}
+
 .luke,
 .obi,
 .sid,
@@ -50,18 +54,10 @@ img.maul {
     margin-top: 10px;
 }
 
-.damage p {
-    margin-top: 30px;
+.your-character.obi {
+    background-color: white;
 }
 
-.luke2,
-.obi2,
-.sid2,
-.maul2 {
-    background-color: red;
-    width: 300px;
-    height: 160px;
-    display: inline-block;
-    border: 2px solid black;
+
+
     
-}
