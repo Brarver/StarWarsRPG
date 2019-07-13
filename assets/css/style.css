@@ -31,7 +31,7 @@ h1 {
 .obi,
 .sid,
 .maul {
-    background-color: red;
+    background-color: white;
     width: 300px;
     height: 160px;
     display: inline-block;
@@ -47,15 +47,26 @@ img {
     margin-top: 10px;
 }
 
-img.obi,
+/* img.obi,
 img.luke,
 img.sid,
 img.maul {
     margin-top: 10px;
+} */
+
+.enemies .obi,
+.enemies .sid,
+.enemies .luke,
+.enemies .maul {
+    background-color: red;
 }
 
-.your-character.obi {
-    background-color: white;
+.defender .obi,
+.defender .sid,
+.defender .luke,
+.defender .maul {
+    background-color: black;
+    color: white;
 }
 
 
