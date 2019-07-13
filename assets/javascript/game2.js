@@ -61,12 +61,19 @@
         var sidBox
         var maulBox
 
+        // var obiBox = createBox(obi)
+        // var lukeBox = createBox(luke)
+        // var sidBox = createBox(sidious)
+        // var maulBox = createBox(maul)
+
+
     /////////////Functions//////////////////////////////////////////////////////////////////////////////
 
         function createBox (char) {
 
             var div = $('<div>').addClass(char.class)
-            return div.append(char.name).append(char.img).append(char.hp)
+            var p = $('<p>').append(char.hp)
+            return div.append(char.name).append(char.img).append(p)
         }
 
         var displayDamage = function () {
