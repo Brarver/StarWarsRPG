@@ -11,12 +11,32 @@ html {
   }
 
 .sec {
-    height: 220px;
-    /* border: 2px solid black; */
+    height: 180px;
+}
+
+.heading h1 {
+    margin-left: 500px;
+    font-size: 45px;
+    background-color: grey;
+    width: 330px;
+    border-radius: 5px;
+    padding: 6px;
+}
+
+h1 {
+    font-size: 20px;
+}
+
+.name {
+    width: fit-content;
+    height: fit-content;
+    background-color: white;
+    border-radius: 5px;
+    padding: 3px;
 }
 
 .fight-section {
-    height: 60px;
+    height: 40px;
 }
 
 button {
@@ -25,14 +45,16 @@ button {
     height: 20px;
     width: 100px;
     margin: 10px;
+    border-radius: 5px;
+    font-size: 14px;
 }
 
-h1 {
-    font-size: 24px;
+.damage {
+    margin-top: 20px;
 }
 
 .damage p {
-    margin-top: 30px;
+    margin-top: 15px;
 }
 
 .luke,
@@ -40,31 +62,27 @@ h1 {
 .sid,
 .maul {
     background-color: white;
-    width: 300px;
-    height: 160px;
+    width: 220px;
+    height: 145px;
     display: inline-block;
     border: 2px solid black;
     margin: auto;
-    /* padding-left: 24px; */
     text-align: center;
+    border-radius: 5px;
     
 }
 
 img {
     max-width: 80%;
     max-height: 75%;
-    display: inline-block;
-    /* margin: auto; */
-    /* margin-top: 10px; */
-    
 }
 
-/* img.obi,
-img.luke,
-img.sid,
-img.maul {
-    margin-top: 10px;
-} */
+.your-character .obi,
+.your-character .luke,
+.your-character .maul,
+.your-character .sid {
+    border: 2px solid rgb(46, 231, 46);
+}
 
 .enemies .obi,
 .enemies .sid,
@@ -79,6 +97,7 @@ img.maul {
 .defender .maul {
     background-color: black;
     color: white;
+    border: 2px solid rgb(46, 231, 46);
 }
 
 p {

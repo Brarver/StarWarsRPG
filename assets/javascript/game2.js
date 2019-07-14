@@ -1,4 +1,4 @@
-// $( document ).ready(function() {
+$( document ).ready(function() {
 
     ////////Variables//////////////////////////////////////////////////////////////////////////////////
 
@@ -61,12 +61,6 @@
         var sidBox
         var maulBox
 
-        // var obiBox = createBox(obi)
-        // var lukeBox = createBox(luke)
-        // var sidBox = createBox(sidious)
-        // var maulBox = createBox(maul)
-
-
     /////////////Functions//////////////////////////////////////////////////////////////////////////////
 
         function createBox (char) {
@@ -106,11 +100,7 @@
     
             if (opp.hp < 1) {
                 player.wins++
-                console.log(player.count)
-                console.log(player.wins)
                 if (player.wins === 3) {
-                    console.log(player.count)
-                    console.log(player.wins)
                     $('.damage').text('You have Won! Game over!')
                     $(".defender *:not('.name')").remove()
                     $('.attack').off()
@@ -196,6 +186,7 @@
             $('.choose').append(obiBox, lukeBox, sidBox, maulBox)
 
             $('.choose').on('click', function (e) {
+                console.log(e)
                 
                 var item = $(e.target).attr('class')
 
@@ -203,26 +194,34 @@
                     
                     player = findChar(sidious.name, players)
                     $('.your-character').append(sidBox)
+                    $('.choose').empty()
+                    $('.choose').hide()
+                    displayEnemies(player)    
 
                 } else if (item === 'luke') {
                     
                     player = findChar(luke.name, players)
                     $('.your-character').append(lukeBox)
+                    $('.choose').empty()
+                    $('.choose').hide()
+                    displayEnemies(player)    
 
                 } else if (item === 'obi') {
 
                     player = findChar(obi.name, players)
                     $('.your-character').append(obiBox)
+                    $('.choose').empty()
+                    $('.choose').hide()
+                    displayEnemies(player)    
 
                 } else if (item === 'maul') {
                     
                     player = findChar(maul.name, players)
                     $('.your-character').append(maulBox)
-                }  
-
-                $('.choose').empty()
-                $('.choose').hide()
-                displayEnemies(player)                            
+                    $('.choose').empty()
+                    $('.choose').hide()
+                    displayEnemies(player)    
+                }                              
             })      
         }
 
@@ -302,7 +301,7 @@
     
     choosePlayer()
 
-//   }); 
+  }); 
 
 
 
