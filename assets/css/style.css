@@ -15,10 +15,10 @@ html {
 }
 
 .heading h1 {
-    margin-left: 500px;
+    margin-left: 800px;
     font-size: 45px;
     background-color: grey;
-    width: 330px;
+    width: 400px;
     border-radius: 5px;
     padding: 6px;
 }
