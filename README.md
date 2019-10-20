@@ -1,9 +1,9 @@
-# unit-4-game
+# StarWars RPG
 
 
 Deployed Page:
 
-https://brarver.github.io/unit-4-game/
+https://brarver.github.io/StarWarsRPG/
 
 What this project does?
 
